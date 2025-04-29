@@ -35,7 +35,7 @@ if docker pull weejewel/wg-easy:latest >/dev/null 2>&1 || true; then
         echo -e "\n\nКонтейнер успешно запущен!"
         echo "WG_HOST=$current_ip"
         echo "PASSWORD=$vpn_password"
-        echo -e "\nWeb-интерфейс доступен по адресу: http://$current_ip:51821"
+        echo -e "Web-интерфейс доступен по адресу: http://$current_ip:51821"
     else
         echo -e "\nОшибка: Не удалось запустить контейнер" >&2
         exit 1

@@ -8,6 +8,7 @@ sudo systemctl enable --now docker
 read -sp "Enter VPN password: " vpn_password
 echo
 
+docker pull weejewel/wg-easy:latest >/dev/null 2>&1 || true && \
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me) \

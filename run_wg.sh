@@ -1,3 +1,4 @@
+clear
 echo "Установка wg-easy..."
 # 1
 sudo apt update && sudo apt install -y docker.io docker-compose
@@ -6,7 +7,7 @@ sudo systemctl enable --now docker
 # 2
 #!/bin/bash
 
-read -sp "\nEnter VPN password: " vpn_password
+read -sp "Enter VPN password: " vpn_password
 echo
 
 docker pull weejewel/wg-easy:latest >/dev/null 2>&1 || true && \

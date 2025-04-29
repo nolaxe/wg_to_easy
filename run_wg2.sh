@@ -1,7 +1,12 @@
 #!/bin/bash
 
 clear
-echo "Установка wg-easy... v2"
+# 
+echo "Удаление wg-easy"
+./del_wg.sh
+#
+
+echo "Установка wg-easy v2"
 sudo apt update && sudo apt install -y docker.io docker-compose
 sudo systemctl enable --now docker
 

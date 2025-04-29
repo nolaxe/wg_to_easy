@@ -3,7 +3,7 @@
 clear
 # 
 echo "Удаление wg-easy"
-./del_wg.sh
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/del_wg.sh")
 #
 
 echo "Установка wg-easy v2"

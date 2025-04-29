@@ -1,6 +1,6 @@
 clear
 echo "Установка wg-easy..."
-echo -e "\nСтатус контейнера:"
+
 # 1
 sudo apt update && sudo apt install -y docker.io docker-compose
 sudo systemctl enable --now docker

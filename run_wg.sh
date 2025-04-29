@@ -30,6 +30,6 @@ docker ps -a | grep wg-easy
 docker exec wg-easy wg show
 
 ###########################
-echo -e "\nКонтейнер успешно запущен!\nWG_HOST=$(curl -s ifconfig.me)\nPASSWORD=$vpn_password\n\nWeb-интерфейс доступен по адресу: http://$(curl -s ifconfig.me):51821"
+echo -e "\nК1онтейнер успешно запущен!\nWG_HOST=$(curl -s ifconfig.me)\nPASSWORD=$vpn_password\n\nWeb-интерфейс доступен по адресу: http://$(curl -s ifconfig.me):51821"
 
-printf "\nКонтейнер успешно запущен!\nWG_HOST=%s\nPASSWORD=%s\n\nWeb-интерфейс доступен по адресу: http://%s:51821\n" \
+printf "\nК2онтейнер успешно запущен!\nWG_HOST=%s\nPASSWORD=%s\n\nWeb-интерфейс доступен по адресу: http://%s:51821\n" \

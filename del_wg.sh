@@ -1,3 +1,4 @@
+clear
 # Остановить контейнер wg-easy
 docker stop wg-easy && echo "Контейнер wg-easy успешно остановлен" || echo "Ошибка остановки контейнера"
 # docker stop $(docker ps -aq)  # Остановить все

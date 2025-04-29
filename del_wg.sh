@@ -31,3 +31,4 @@ echo "Контейнеры:" && docker ps -a
 echo "Образы:" && docker images
 echo "Тома:" && docker volume ls
 echo "Сети:" && docker network ls
+echo "end"

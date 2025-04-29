@@ -1,5 +1,6 @@
 clear
 echo "Установка wg-easy..."
+echo -e "\nСтатус контейнера:"
 # 1
 sudo apt update && sudo apt install -y docker.io docker-compose
 sudo systemctl enable --now docker
@@ -30,4 +31,5 @@ docker exec wg-easy wg show
 
 ###########################
 echo -e "\nКонтейнер успешно запущен!\nWG_HOST=$(curl -s ifconfig.me)\nPASSWORD=$vpn_password\n\nWeb-интерфейс доступен по адресу: http://$(curl -s ifconfig.me):51821"
-  
+
+printf "\nКонтейнер успешно запущен!\nWG_HOST=%s\nPASSWORD=%s\n\nWeb-интерфейс доступен по адресу: http://%s:51821\n" \

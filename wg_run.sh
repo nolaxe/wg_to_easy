@@ -1,1 +1,20 @@
+ # 1
+sudo apt update && sudo apt install -y docker.io docker-compose
+sudo systemctl enable --now docker
 
+# 2
+docker run -d \
+  --name=wg-easy \
+  --env-file .env \
+  -p 51820:51820/udp \
+  -p 51821:51821/tcp \
+  --cap-add=NET_ADMIN \
+  --sysctl="net.ipv4.ip_forward=1" \
+  --restart unless-stopped \
+  weejewel/wg-easy
+
+# 3 status
+docker ps -a | grep wg-easy
+
+# 4 check 
+docker exec wg-easy wg show

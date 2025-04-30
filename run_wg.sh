@@ -59,6 +59,17 @@ docker exec wg-easy wg show
 echo -e "\nКонтейнер успешно запущен!\nWG_HOST=$(curl -s ifconfig.me)\nPASSWORD=$vpn_password\nWeb-интерфейс доступен по адресу: http://$(curl -s ifconfig.me):51821"
 echo "|"
 echo "✅ Контейнер wg-easy успешно запущен!"
-echo "🔗 Админка: http://$(curl -s ifconfig.me || echo 'YOUR_IP'):51821"
+echo "🔗 Админка: http://$(curl -s ifconfig.me):51821"
+echo "|"
+echo "end"
+
+
+echo "\nКонтейнер успешно запущен!"
+echo "\nHOST=$(curl -s ifconfig.me)"
+echo "\nPASSWORD=$vpn_password"
+echo "\nWeb-интерфейс доступен по адресу: http://$(curl -s ifconfig.me):51821"
+echo "|"
+echo "✅ Контейнер wg-easy успешно запущен!"
+echo "🔗 Админка: http://$(curl -s ifconfig.me):51821"
 echo "|"
 echo "end"

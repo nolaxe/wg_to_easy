@@ -1,10 +1,16 @@
 
-step 1 Run  
+to run  
 v1
 ```
-curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg.sh"
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg2.sh")
 ```
+or
 v2
 ```
-bash <(curl -s "https://raw.githubusercontent.com/wg_to_easy/main/run_wg2.sh")
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg2.sh")
+```
+
+to delete
+```
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/del_wg.sh")
 ```

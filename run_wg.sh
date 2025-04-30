@@ -36,7 +36,7 @@ fi
 # Запуск контейнера
 docker run -d \
   --name=wg-easy \
-  -e WG_HOST=$(curl -s ifconfig.me) || echo "YOUR_EXTERNAL_IP") \
+  -e WG_HOST=$(curl -s ifconfig.me || echo "YOUR_EXTERNAL_IP") \
   -e PASSWORD="$vpn_password" \
   -p 51820:51820/udp \
   -p 51821:51821/tcp \

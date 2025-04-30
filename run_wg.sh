@@ -13,6 +13,7 @@ echo
 
 # docker pull weejewel/wg-easy:latest >/dev/null 2>&1 || true && \
 docker pull ghcr.io/wg-easy/wg-easy:latest >/dev/null 2>&1 || true && \
+
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me) \
@@ -22,7 +23,11 @@ docker run -d \
   --cap-add=NET_ADMIN \
   --sysctl="net.ipv4.ip_forward=1" \
   --restart unless-stopped \
-  weejewel/wg-easy
+
+# launch
+# weejewel/wg-easy
+ghcr.io/wg-easy/wg-easy:latest
+
 
 # 3 status
 docker ps -a | grep wg-easy

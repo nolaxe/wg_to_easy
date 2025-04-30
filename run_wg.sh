@@ -67,7 +67,7 @@ docker exec wg-easy wg show
 
 ###########################
 
-echo -e "✅ Контейнер wg-easy успешно запущен!HOST=$(curl -s ifconfig.me)"
+echo -e "✅ Контейнер wg-easy успешно запущен!\nHOST=$(curl -s ifconfig.me)"
 echo "    Web-интерфейс http://$(curl -s ifconfig.me):51821"
 echo "    PASSWORD=$vpn_password"
 echo "|"

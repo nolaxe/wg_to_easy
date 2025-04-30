@@ -20,17 +20,15 @@ fi
 
 # Запрос пароля VPN
 # Генерация bcrypt-хэша (требуется установленный node.js или docker)
-if ! command -v node &> /dev/null; then
-    echo "⚠️ Node.js не установлен, используем Docker для генерации хэша..."
-    password_hash=$(docker run --rm -it node:alpine node -e "console.log(require('bcryptjs').hashSync('$vpn_password', 8))" 2>/dev/null)
-else
-    password_hash=$(node -e "console.log(require('bcryptjs').hashSync('$vpn_password', 8))")
-fi
+read -sp "Password: " password
+echo
 
-if [ -z "$password_hash" ]; then
-    echo "❌ Ошибка: не удалось сгенерировать хэш пароля"
-    exit 1
-fi
+# 3. Генерация bcrypt-хэша
+echo "Генерация хэша пароля..."
+hash=$(docker run --rm -i python:slim sh -c \
+  "pip install --quiet --no-cache-dir --root-user-action=ignore bcrypt >/dev/null 2>&1 && \
+   python -c 'import bcrypt; print(bcrypt.hashpw(\"$password\".encode(\"utf-8\"), bcrypt.gensalt(rounds=8)).decode(\"utf-8\"))'" || \
+   { echo "❌ Ошибка генерации хэша"; exit 1; })
 
 # Удаление старого контейнера (если есть)
 docker rm -f wg-easy 2>/dev/null || true

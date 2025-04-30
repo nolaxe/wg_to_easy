@@ -1,5 +1,5 @@
 clear
-echo "Установка wg-easy..."
+echo "Установка Docker & wg-easy ..."
 
 # 1
 sudo apt update && sudo apt install -y docker.io docker-compose

@@ -19,8 +19,18 @@ fi
 # 2 Установка wg-easy
 
 # Запрос пароля VPN
-read -sp "Enter password: " vpn_password
-echo
+# Генерация bcrypt-хэша (требуется установленный node.js или docker)
+if ! command -v node &> /dev/null; then
+    echo "⚠️ Node.js не установлен, используем Docker для генерации хэша..."
+    password_hash=$(docker run --rm -it node:alpine node -e "console.log(require('bcryptjs').hashSync('$vpn_password', 8))" 2>/dev/null)
+else
+    password_hash=$(node -e "console.log(require('bcryptjs').hashSync('$vpn_password', 8))")
+fi
+
+if [ -z "$password_hash" ]; then
+    echo "❌ Ошибка: не удалось сгенерировать хэш пароля"
+    exit 1
+fi
 
 # Удаление старого контейнера (если есть)
 docker rm -f wg-easy 2>/dev/null || true
@@ -37,7 +47,7 @@ fi
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me || echo "YOUR_EXTERNAL_IP") \
-  -e PASSWORD="$vpn_password" \
+  -e PASSWORD="$password_hash" \
   -p 51820:51820/udp \
   -p 51821:51821/tcp \
   --cap-add=NET_ADMIN \

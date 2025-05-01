@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Функция для загрузки скрипта с GitHub
+# Функция для загрузки скрипта с GitHub +
 download_script() {
     local script_name=$1
     local url="https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/$script_name"

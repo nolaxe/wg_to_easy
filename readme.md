@@ -1,5 +1,5 @@
 
-to run  
+run  
 - wg last
 ```
 bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg.sh")

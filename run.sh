@@ -25,8 +25,8 @@ fi
 
 # Меню выбора
 echo "Выберите версию для запуска:"
-echo "1) Версия 1 (run_wg1.sh)"
-echo "2) Версия 2 (run_wg2.sh)"
+echo "Версия 1 (run_wg1.sh)"
+echo "Версия 2 (run_wg2.sh)"
 read -p "Введите 1 или 2: " choice
 
 case $choice in

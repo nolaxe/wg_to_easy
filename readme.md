@@ -1,14 +1,16 @@
 
 to run  
-v1
+- wg last
 ```
-bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg2.sh")
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg.sh")
 ```
-or
-v2
+or wg v1.0.20210914 
+- wg 
 ```
-bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg2.sh")
+bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/run_wg1.sh")
 ```
+
+
 
 to delete
 ```

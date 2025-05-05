@@ -45,7 +45,7 @@ fi
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me || echo "YOUR_EXTERNAL_IP") \
-  -e PASSWORD_HASH="$hash" \
+  -e PASSWORD=123456 \
   -p 51820:51820/udp \
   -p 51821:51821/tcp \
   --cap-add=NET_ADMIN \

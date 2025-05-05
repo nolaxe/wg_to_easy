@@ -55,19 +55,26 @@ docker exec wg-easy wg show
 ###########################
 echo -e "\n"
 echo -e "✅ Контейнер wg-easy успешно запущен"
-echo "   Web-интерфейс http://$(curl -s ifconfig.me):51821"
+echo "   Web-интерфейс: http://$(curl -s ifconfig.me):51821"
 echo "   Пароль: $password"
 echo "-"
 echo "eof..."
 
-sleep 10 && \
-read -p "Заменить файл app.js? (y/n) " choice && \
-if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then \
-    curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js && \
-    docker cp app.js wg-easy:/app/www/js/app.js && \
-    rm app.js && \
-    echo "Файл app.js успешно обновлен!"; \
-else \
-    echo "Отмена. Файл не заменен."; \
-    exit 0; \
-fi && \
+###########################
+sleep 10
+read -p "Заменить файл app.js? (y/n) " choice
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    echo "Загрузка нового app.js..."
+    if curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js; then
+        echo "Копирование файла в контейнер..."
+        docker cp app.js wg-easy:/app/www/js/app.js
+        rm -f app.js
+        echo "✅ Файл app.js успешно обновлен!"
+    else
+        echo "❌ Ошибка при загрузке файла!"
+        exit 1
+    fi
+else
+    echo "ℹ️ Отмена. Файл не заменен."
+    exit 0
+fi

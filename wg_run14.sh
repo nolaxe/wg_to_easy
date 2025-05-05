@@ -33,6 +33,25 @@ fi
 echo "Установка WG"
 echo -e "\n"
 
+if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
+        echo -e "\nКонтейнер wg-easy уже существует:"
+        docker ps -a | grep wg-easy
+        
+        read -p "Хотите остановить и удалить существующий контейнер? [y/N] " yn
+        case $yn in
+            [Yy]* )
+                echo "Останавливаю и удаляю контейнер..."
+                docker stop wg-easy >/dev/null 2>&1
+                docker rm wg-easy >/dev/null 2>&1
+                return 0
+                ;;
+            * )
+                echo "Продолжаю без изменений. Выход."
+                exit 1
+                ;;
+        esac
+    fi
+
 read -sp "Введите пароль для веб интерфейса: " password
 echo
 

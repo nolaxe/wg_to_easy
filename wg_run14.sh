@@ -36,8 +36,8 @@ docker rm -f wg-easy 2>/dev/null || true
 # Скачивание образа (с проверкой ошибок)
 #  docker pull weejewel/wg-easy:latest >/dev/null 2>&1 || true && \
 #  docker pull ghcr.io/wg-easy/wg-easy:latest >/dev/null 2>&1 || true && \
-if ! docker pull ghcr.io/wg-easy/wg-easy:latest; then
-    echo "❌ Ошибка: не удалось скачать ghcr.io/wg-easy/wg-easy:latest"
+if ! docker pull ghcr.io/weejewel/wg-easy; then
+    echo "❌ Ошибка: не удалось скачать weejewel/wg-easy"
     exit 1
 fi
 

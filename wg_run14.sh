@@ -59,3 +59,15 @@ echo "   Web-интерфейс http://$(curl -s ifconfig.me):51821"
 echo "   Пароль: $password"
 echo "-"
 echo "eof..."
+
+sleep 10 && \
+read -p "Заменить файл app.js? (y/n) " choice && \
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then \
+    curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js && \
+    docker cp app.js wg-easy:/app/www/js/app.js && \
+    rm app.js && \
+    echo "Файл app.js успешно обновлен!"; \
+else \
+    echo "Отмена. Файл не заменен."; \
+    exit 0; \
+fi && \

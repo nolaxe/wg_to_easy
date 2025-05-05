@@ -6,7 +6,7 @@ if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/bender.png -o bender.png
     
     echo "Копирую в контейнер..."
-    docker cp app.js wg-easy:/app/www/js/app.js
+    # docker cp app.js wg-easy:/app/www/js/app.js
     docker cp bender.png wg-easy:/app/www/img/bender.png
     # rm -f app.js bender.png
     echo "✅ Готово!"

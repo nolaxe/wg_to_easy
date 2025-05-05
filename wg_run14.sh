@@ -6,23 +6,23 @@ echo "14"
 echo "Установка Docker & Docker Compose"
 echo -e "\n"
 
-# Проверяем, установлен ли docker
+# Проверяем Docker
 if ! command -v docker &> /dev/null; then
     echo "Docker не установлен. Начинаем установку..."
-    sudo apt update && sudo apt install -y docker.io docker-compose
+    sudo apt update && sudo apt install -y docker.io docker-compose-plugin
     sudo systemctl enable --now docker
     echo "Docker успешно установлен и запущен."
 else
     echo "Docker уже установлен."
     docker --version
 fi
-# Проверяем, установлен ли docker-compose
-if ! command -v docker-compose &> /dev/null; then
-    echo "Docker Compose не установлен. Устанавливаем..."
-    sudo apt install -y docker-compose
+# Проверяем Docker Compose V2 (используется как 'docker compose', без дефиса)
+if ! command -v docker compose &> /dev/null; then
+    echo "Docker Compose V2 не установлен. Устанавливаем..."
+    sudo apt install -y docker-compose-plugin
 else
-    echo "Docker Compose уже установлен."
-    docker-compose --version
+    echo "Docker Compose V2 уже установлен."
+    docker compose version
 fi
 
 # or

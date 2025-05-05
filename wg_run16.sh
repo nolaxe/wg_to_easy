@@ -1,11 +1,9 @@
 #!/bin/bash
 clear
-
+echo "wg_run15.sh"
 # ------------------------------------------------------------------
-echo "15"
-echo "Установка Docker & Docker Compose"
 echo -e "\n"
-
+echo "Установка Docker & Docker Compose"
 # Проверяем Docker
 if ! command -v docker &> /dev/null; then
     echo "Docker не установлен. Начинаем установку..."
@@ -24,20 +22,19 @@ else
     echo "Docker Compose V2 уже установлен."
     docker compose version
 fi
-
 # or
 # sudo apt update && sudo apt install -y docker.io docker-compose
 # sudo systemctl enable --now docker
+# ------------------------------------------------------------------
+
 
 # ------------------------------------------------------------------
-echo "Установка WG"
 echo -e "\n"
-
+echo "Установка WG"
+# Проверка ксуествования онтейнера
 if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
-        echo "Контейнер wg-easy уже существует:"
         echo -e "\nКонтейнер wg-easy уже существует:"
-        docker ps -a | grep wg-easy
-        
+        docker ps -a | grep wg-easy        
         read -p "Хотите остановить и удалить существующий контейнер? [y/N] " yn
         case $yn in
             [Yy]* )
@@ -52,10 +49,13 @@ if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
                 ;;
         esac
     fi
+# ------------------------------------------------------------------
 
+# ------------------------------------------------------------------
+# Основная часть
+# Настройка WG
 read -sp "Введите пароль для веб интерфейса: " password
 echo
-
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me) \
@@ -66,24 +66,25 @@ docker run -d \
   --sysctl="net.ipv4.ip_forward=1" \
   --restart unless-stopped \
   weejewel/wg-easy
+  
 # ------------------------------------------------------------------
 
 # 3 status
 docker ps -a | grep wg-easy
 # 4 check 
-docker exec wg-easy wg show
+# docker exec wg-easy wg show
 
-###########################
+# ------------------------------------------------------------------
 echo -e "\n"
 echo -e "✅ Контейнер wg-easy успешно запущен"
 echo "   Web-интерфейс: http://$(curl -s ifconfig.me):51821"
 echo "   Пароль: $password"
 echo "-"
-echo "e o f . . ."
+echo "eof . . ."
 
 ###########################
-sleep 10
-read -p "Заменить файл app.js? (y/n) " choice
+sleep 1
+read -p "Убрать плашку веб интерфейса -Доступно обновление- (docker cp app.js wg-easy:/app/www/js/app.js) ? (y/n) " choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     echo "Загрузка нового app.js..."
     if curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js; then

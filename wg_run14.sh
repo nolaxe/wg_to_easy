@@ -58,7 +58,7 @@ echo -e "✅ Контейнер wg-easy успешно запущен"
 echo "   Web-интерфейс: http://$(curl -s ifconfig.me):51821"
 echo "   Пароль: $password"
 echo "-"
-echo "eof..."
+echo "e o f . . ."
 
 ###########################
 sleep 10

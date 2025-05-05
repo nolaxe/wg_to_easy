@@ -47,7 +47,7 @@ if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
                 return 0
                 ;;
             * )
-                echo "Продолжаю без изменений. Выход."
+                echo "Отмена установки, выход."
                 exit 1
                 ;;
         esac

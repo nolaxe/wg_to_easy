@@ -5,14 +5,14 @@
 # 2
 #!/bin/bash
 
-read -sp "Enter VPN password: " vpn_password
+read -sp "Enter GUI password: " password
 echo
 
 
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me) \
-  -e PASSWORD="$vpn_password" \
+  -e PASSWORD="$password" \
   -p 51820:51820/udp \
   -p 51821:51821/tcp \
   --cap-add=NET_ADMIN \

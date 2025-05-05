@@ -34,6 +34,7 @@ echo "Установка WG"
 echo -e "\n"
 
 if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
+        echo "\nКонтейнер wg-easy уже существует:"
         echo -e "\nКонтейнер wg-easy уже существует:"
         docker ps -a | grep wg-easy
         

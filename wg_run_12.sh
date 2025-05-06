@@ -1,9 +1,9 @@
 #!/bin/bash
 clear
-echo " Установка wg-easy v12 "
+
+echo "# Установка wg-easy v12 #"
 # ------------------------------------------------------------------
-echo -e "\n"
-echo "Установка Docker & Docker Compose"
+echo -e "\nУстановка Docker & Docker Compose"
 
 # Установка Docker (только если не установлен)
 if ! command -v docker &> /dev/null; then
@@ -40,8 +40,7 @@ fi
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
-# Основная часть
-# Настройка WG
+# Запуск WG
 read -sp "Введите пароль для веб интерфейса: " password
 echo
 docker run -d \
@@ -60,18 +59,17 @@ docker run -d \
 # 3 status
 docker ps -a | grep wg-easy
 # 4 check 
-# docker exec wg-easy wg show 
+docker exec wg-easy wg show 
 
 # ------------------------------------------------------------------
 echo -e "\n"
-echo -e "✅ Контейнер wg-easy успешно запущен"
 echo "   Web-интерфейс: http://$(curl -s ifconfig.me):51821"
 echo "   Пароль: $password"
 echo "-"
 echo "eof . . ."
 
 ###########################
-sleep 1
+sleep 2
 read -p "Убрать плашку веб интерфейса -Доступно обновление- (docker cp app.js wg-easy:/app/www/js/app.js) ? (y/n) " choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     # Загрузка файлов

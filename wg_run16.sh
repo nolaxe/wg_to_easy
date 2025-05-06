@@ -93,7 +93,7 @@ if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     
     echo "Копирую в контейнер..."
     docker cp app.js wg-easy:/app/www/js/app.js
-    docker cp bender.png wg-easy:/app/www/img/bender.png
+    docker cp bender.png wg-easy:/app/www/img/logo.png
     # rm -f app.js bender.png
     echo "✅ Готово!"
 else

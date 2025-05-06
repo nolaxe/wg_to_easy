@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-echo "# Установка wg-easy v14# "
+echo "# Установка wg-easy v14 #"
 
 # 0 Обновление пакетов (делаем ДО проверки Docker)
 sudo apt update

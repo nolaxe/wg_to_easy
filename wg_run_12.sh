@@ -4,51 +4,39 @@ echo " Установка wg-easy v12 "
 # ------------------------------------------------------------------
 echo -e "\n"
 echo "Установка Docker & Docker Compose"
-# Проверяем Docker
+
+# Установка Docker (только если не установлен)
 if ! command -v docker &> /dev/null; then
     echo "Docker не установлен. Начинаем установку..."
     sudo apt update && sudo apt install -y docker.io docker-compose-plugin
     sudo systemctl enable --now docker
+    sudo usermod -aG docker $USER
     echo "Docker успешно установлен и запущен."
 else
     echo "Docker уже установлен."
     docker --version
 fi
-# Проверяем Docker Compose V2 (используется как 'docker compose', без дефиса)
-if ! command -v docker compose &> /dev/null; then
-    echo "Docker Compose V2 не установлен. Устанавливаем..."
-    sudo apt install -y docker-compose-plugin
-else
-    echo "Docker Compose V2 уже установлен."
-    docker compose version
-fi
+
 # or
 # sudo apt update && sudo apt install -y docker.io docker-compose
 # sudo systemctl enable --now docker
 # ------------------------------------------------------------------
 
-
 # ------------------------------------------------------------------
-echo -e "\n"
-echo "Установка WG"
+echo -e "\nУстановка WG"
 # Проверка существования контейнера
-if docker ps -a --format '{{.Names}}' | grep -q "^wg-easy$"; then
-        echo -e "\nКонтейнер wg-easy уже существует:"
-        docker ps -a | grep wg-easy        
-        read -p "Хотите остановить и удалить существующий контейнер? [y/N] " yn
-        case $yn in
-            [Yy]* )
-                echo "Останавливаю и удаляю контейнер..."
-                docker stop wg-easy >/dev/null 2>&1
-                docker rm wg-easy >/dev/null 2>&1
-                return 0
-                ;;
-            * )
-                echo "Отмена установки, выход."
-                exit 1
-                ;;
-        esac
-    fi
+
+# docker ps -a --filter "name=^/wg-easy$" --quiet
+# Возвращает: ID контейнера (если контейнер существует) или Пустую строку (если контейнера нет)
+# [ -n "строка" ]
+# Проверяет, что строка не пустая: Возвращает true (0), если контейнер найден или Возвращает false (1)
+if [ -n "$(docker ps -a --filter "name=^/wg-easy$" --quiet)" ]; then 
+    echo -e "\nКонтейнер wg-easy существует:"
+    docker ps -a --filter "name=^/wg-easy$" --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"
+    
+    read -rp "Удалить? [y/N] " yn
+    [[ "${yn,,}" =~ ^y ]] && docker rm -f wg-easy &>/dev/null
+fi
 # ------------------------------------------------------------------
 
 # ------------------------------------------------------------------
@@ -72,7 +60,7 @@ docker run -d \
 # 3 status
 docker ps -a | grep wg-easy
 # 4 check 
-# docker exec wg-easy wg show
+# docker exec wg-easy wg show 
 
 # ------------------------------------------------------------------
 echo -e "\n"

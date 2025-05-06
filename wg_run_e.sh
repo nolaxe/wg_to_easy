@@ -6,6 +6,8 @@ echo "wg_run_e.sh"
 # ------------------------------------------------------------------
 # Основная часть
 # Настройка WG
+read -sp "Введите версию: " ver
+echo
 read -sp "Введите пароль для веб интерфейса: " password
 echo
 docker run -d \
@@ -17,7 +19,7 @@ docker run -d \
   --cap-add=NET_ADMIN \
   --sysctl="net.ipv4.ip_forward=1" \
   --restart unless-stopped \
-  nolaxe/wg-easy
+  nolaxe/wg-easy:"$ver"
   # ghcr.io/wg-easy/wg-easy
 # ------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "wg_run15.sh"
+echo " Установка wg-easy v12 "
 # ------------------------------------------------------------------
 echo -e "\n"
 echo "Установка Docker & Docker Compose"

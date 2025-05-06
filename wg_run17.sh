@@ -65,7 +65,7 @@ docker run -d \
   --cap-add=NET_ADMIN \
   --sysctl="net.ipv4.ip_forward=1" \
   --restart unless-stopped \
-  wg-easy/wg-easy
+  weejewel/wg-easy
   # ghcr.io/wg-easy/wg-easy
 # ------------------------------------------------------------------
 

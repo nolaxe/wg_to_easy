@@ -15,13 +15,13 @@ read -p "Убрать плашку 'Доступно обновление' (dock
 
 if [[ "$choice" =~ [yY] ]]; then
     echo "Загружаю файлы..."
-    curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js
+    # curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/app_no_upd.js -o app.js
     curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/bender.png -o logo.png
 
     echo "Копирую в контейнер ${WG_CONTAINER}..."
-    docker cp app.js ${WG_CONTAINER}:/app/www/js/app.js && echo "app.js скопирован успешно"
+    # docker cp app.js ${WG_CONTAINER}:/app/www/js/app.js && echo "app.js скопирован успешно"
     docker cp logo.png ${WG_CONTAINER}:/app/www/img/logo.png && echo "logo.png скопирован успешно"
-    rm -f app.js logo.png
+    rm -f logo.png #app.js 
 
     echo "✅ Готово! Контейнер ${WG_CONTAINER} обновлен."
 else

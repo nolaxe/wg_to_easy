@@ -1,6 +1,8 @@
 #!/bin/bash
 clear
 
+sudo apt update && sudo apt upgrade -y
+
 echo "# Установка wg-easy v14 #"
 # ------------------------------------------------------------------
 echo -e "\nУстановка Docker & Docker Compose"
@@ -8,6 +10,7 @@ echo -e "\nУстановка Docker & Docker Compose"
 # 1 Установка Docker (только если не установлен)
 if ! command -v docker &> /dev/null; then
     sudo apt update && sudo apt install -y docker.io docker-compose-plugin
+    # sudo apt update && sudo apt upgrade -y
     # sudo apt update && sudo apt install -y docker.io docker-compose
     sudo systemctl enable --now docker
     sudo usermod -aG docker $USER

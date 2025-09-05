@@ -2,15 +2,14 @@
 ```
 bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/wg_run14.sh")
 ```
-or
-- RUN wg 12
+or RUN wg 12
 ```
 bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/wg_run12.sh")
 ```
 
 
 
-to delete
+- delete all
 ```
 bash <(curl -s "https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/wg_del.sh")
 ```

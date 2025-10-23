@@ -10,6 +10,12 @@ echo -e "\nУстановка Docker & Docker Compose"
 # 1 Установка Docker (только если не установлен)
 if ! command -v docker &> /dev/null; then
     sudo apt update && sudo apt install -y docker.io docker-compose-plugin
+    
+    # ruvds.com
+    # в Ubuntu 24.04 пакет docker-compose-plugin может отсутствовать в стандартных зеркалах, тогда
+    # sudo apt update && sudo apt install -y docker.io containerd
+    # 
+    
     # sudo apt update && sudo apt upgrade -y
     # sudo apt update && sudo apt install -y docker.io docker-compose
     sudo systemctl enable --now docker

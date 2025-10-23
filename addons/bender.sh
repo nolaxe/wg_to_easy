@@ -20,11 +20,11 @@ if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     # Загрузка файлов
     echo "Загружаю файлы..."    
     # curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/addons/app_no_upd.js -o app.js
-    curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/addons/bender.png -o bender.png
+    curl -sSL https://raw.githubusercontent.com/nolaxe/wg_to_easy/main/addons/bender.png -o bender2.png
     
     echo "Копирую в контейнер..."
     # docker cp app.js wg-easy:/app/www/js/app.js
-    docker cp bender.png wg-easy:/app/www/img/logo.png
+    docker cp bender2.png wg-easy:/app/www/img/logo.png
     # rm -f app.js bender.png
     echo "✅ Готово!"
 else

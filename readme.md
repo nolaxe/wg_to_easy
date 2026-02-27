@@ -1,4 +1,10 @@
 ### WG fast install
+1 запуск скрипта  
+2 ввод пароля  
+3 готовая ссылка веб интерфейса wg  
+
+<img width="450" height="349" alt="image" src="https://github.com/user-attachments/assets/29528a71-29c5-4fdc-bea8-4f85e3c12b3b" />
+
 
 - RUN wg 14
 ```

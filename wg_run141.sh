@@ -77,7 +77,7 @@ PORT_WEB=${input_port_web:-$PORT_WEB_DEF}
 
 # 5. Пароль
 echo
-ask "Придумайте пароль для админки: "
+ask "Пароль для веб интерфейса wg: "
 read -rs password
 echo -e "${GREEN}*** принято ***${NC}"
 

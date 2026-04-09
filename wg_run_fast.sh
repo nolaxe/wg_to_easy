@@ -1,10 +1,11 @@
 #!/bin/bash
 clear
 echo "wg_run_fast.sh"
+hash=$(docker run --rm ghcr.io/wg-easy/wg-easy wgpw $(curl -s ifconfig.me) | grep 'PASSWORD_HASH=' | cut -d"'" -f2)
 docker run -d \
   --name=wg-easy \
   -e WG_HOST=$(curl -s ifconfig.me) \
-  -e PASSWORD=$(curl -s ifconfig.me) \
+  -e PASSWORD=$hash \
   -p 51820:51820/udp \
   -p 51821:51821/tcp \
   --cap-add=NET_ADMIN \

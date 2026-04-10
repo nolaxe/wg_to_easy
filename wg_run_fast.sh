@@ -7,8 +7,7 @@ IP=$(curl -s ifconfig.me)
 RAW_PASS=$IP
 
 # 2. Генерируем хеш
-# Используем версию :14, чтобы не качать лишнее
-hash=$(docker run --rm ghcr.io/wg-easy/wg-easy:14 wgpw "$RAW_PASS" | grep 'PASSWORD_HASH=' | cut -d"'" -f2)
+hash=$(docker run --rm ghcr.io/wg-easy/wg-easy:latest wgpw "$RAW_PASS" | grep 'PASSWORD_HASH=' | cut -d"'" -f2)
 
 # 3. Удаляем старый контейнер
 docker rm -f wg-easy > /dev/null 2>&1
@@ -35,7 +34,6 @@ docker cp logo.png wg-easy:/app/www/img/logo.png > /dev/null 2>&1
 
 echo -e "\n\033[1;34m----------------------------------------------------------\033[0m"
 echo "   URL: http://$IP:51821"
-echo "   Пароль (Текст): $RAW_PASS"
 echo -e "\033[1;34m----------------------------------------------------------\033[0m"
 
 echo -e "\n✅ Готово!"
